@@ -7,3 +7,5 @@ RUN curl https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz > goo
 
 RUN  tar -C . -xvf google-cloud-sdk.tar.gz
 RUN google-cloud-sdk/install.sh
+
+ENV PATH $PATH:google-cloud-sdk/bin
