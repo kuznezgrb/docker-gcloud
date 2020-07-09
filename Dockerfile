@@ -3,9 +3,11 @@ FROM docker:stable
 RUN apk add curl
 RUN apk add python3
 
-RUN curl https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz > google-cloud-sdk.tar.gz
+RUN mkdir /usr/local/gc/
 
-RUN  tar -C . -xvf google-cloud-sdk.tar.gz
-RUN google-cloud-sdk/install.sh
+RUN curl https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz > /usr/local/gc/google-cloud-sdk.tar.gz
 
-ENV PATH $PATH:google-cloud-sdk/bin
+RUN  tar -C /usr/local/gc/ -xvf /usr/local/gc/google-cloud-sdk.tar.gz
+RUN /usr/local/gc/google-cloud-sdk/install.sh
+
+ENV PATH $PATH:/usr/local/gc/google-cloud-sdk/bin
